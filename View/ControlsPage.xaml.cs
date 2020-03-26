@@ -13,22 +13,18 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace FlightSimulatorApp
+namespace FlightSimulatorApp.View
 {
     /// <summary>
-    /// Interaction logic for LoginWindow.xaml
+    /// Interaction logic for ControlsPage.xaml
     /// </summary>
-    public partial class LoginWindow : Window
+    public partial class ControlsPage : Page
     {
-        public LoginWindow()
+        FlightControlViewModel vm;
+        public ControlsPage(FlightControlViewModel viewmodel)
         {
+            vm = viewmodel;
             InitializeComponent();
-        }
-
-        private void connect_button_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            ControlWindow win = new ControlWindow();
-            win.ShowDialog();
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FlightSimulatorApp
 {
-    class PropertyChangedEventArgs
+    public class PropertyChangedEventArgs
     {
         private string eventName;
         public PropertyChangedEventArgs(string name)
