@@ -70,7 +70,7 @@ namespace FlightSimulatorApp
             }
         }
         private double airspeed;
-        public double Airspeed
+        public double AirSpeed
         {
             get { return airspeed; }
             set

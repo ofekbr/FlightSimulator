@@ -25,6 +25,7 @@ namespace FlightSimulatorApp.View
         {
             vm = viewmodel;
             InitializeComponent();
+            DataContext = vm;
         }
     }
 }
