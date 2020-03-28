@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FlightSimulatorApp
 {
-    interface ISimulatorModel : INotifyPropertyChanged
+    public interface ISimulatorModel : INotifyPropertyChanged
     {
         //connection
         void connect(string ip, int port);

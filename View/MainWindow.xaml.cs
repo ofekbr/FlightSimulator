@@ -10,18 +10,22 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace FlightSimulatorApp
+namespace FlightSimulatorApp.View
 {
     /// <summary>
-    /// Interaction logic for ControlWindow.xaml
+    /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class ControlWindow : Window
+    public partial class MainWindow : NavigationWindow
     {
-        public ControlWindow()
+        LoginPage loginP;
+        public MainWindow()
         {
             InitializeComponent();
+            loginP = new LoginPage();
+            Navigate(loginP);
         }
     }
 }

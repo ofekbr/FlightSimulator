@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace FlightSimulatorApp
 {
-    class FlightControlViewModel : INotifyPropertyChanged
+    public class FlightControlViewModel : INotifyPropertyChanged
     {
-        private FlightSimulatorModel model;
+        private ISimulatorModel model;
 
         public FlightControlViewModel(ISimulatorModel sm)
         {
@@ -27,10 +28,26 @@ namespace FlightSimulatorApp
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
 
-        //properties
-        public double VM_HeadingDeg
+        public void connect(string ip, int port)
         {
-            get { return model.; }
+            model.connect(ip, port);
+        }
+
+        public void start()
+        {
+            model.start();
+        }
+
+        //properties
+        private double headingDeg;
+        public double HeadingDeg
+        {
+            get { return headingDeg; }
+            set
+            {
+                headingDeg = value;
+                this.NotifyPropertyChanged("headingDeg");
+            }
         }
         private double verticalSpeed;
         public double VerticalSpeed
@@ -53,7 +70,7 @@ namespace FlightSimulatorApp
             }
         }
         private double airspeed;
-        public double Airspeed
+        public double AirSpeed
         {
             get { return airspeed; }
             set
