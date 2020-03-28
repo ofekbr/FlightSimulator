@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:FlightSimulatorApp.View"
       xmlns:Controls="clr-namespace:FlightSimulatorApp.View"
+      xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ControlsPage">
@@ -93,5 +94,25 @@
                 </TransformGroup>
             </Slider.RenderTransform>
         </Slider>
+
+        <m:Map x:Name="myMap" Margin="10,10,400,110" ZoomLevel="12"
+             CredentialsProvider="FZDHNjSBpsApSSRB09pf~U-rEk1yyBvYf-TdE8IG6sw~Ahx-TlEoICfQ_t6y3Po1MO8mvQzz8PpJWw1Oc8CMFvZkInCGNQBSuWaSlOIfbx3E"
+             Center="32.002084, 34.872249">
+            <m:Pushpin>
+                
+            </m:Pushpin>
+            <StackPanel HorizontalAlignment="Right" Height="40" VerticalAlignment="Top" Width="120" Orientation="Horizontal">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Latitude :"/>
+                    <TextBlock Text="Longitude :"/>
+                </StackPanel>
+                <StackPanel Margin="5,0,0,0"  Orientation="Vertical">
+                    <TextBlock Text="{Binding Latitude}"/>
+                    <TextBlock Text="{Binding Longitude}"/>
+                </StackPanel>
+            </StackPanel>
+
+        </m:Map>
+
     </Grid>
 </Page>
