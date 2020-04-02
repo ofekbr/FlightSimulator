@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace FlightSimulatorApp
 {
@@ -43,7 +44,7 @@ namespace FlightSimulatorApp
             set
             {
                 headingDeg = value;
-                this.NotifyPropertyChanged("headingDeg");
+                this.NotifyPropertyChanged("HeadingDeg");
             }
         }
         private double verticalSpeed;
@@ -53,7 +54,7 @@ namespace FlightSimulatorApp
             set
             {
                 verticalSpeed = value;
-                this.NotifyPropertyChanged("verticalSpeed");
+                this.NotifyPropertyChanged("VerticalSpeed");
             }
         }
         private double groundSpeed;
@@ -63,7 +64,7 @@ namespace FlightSimulatorApp
             set
             {
                 groundSpeed = value;
-                this.NotifyPropertyChanged("groundSpeed");
+                this.NotifyPropertyChanged("GroundSpeed");
             }
         }
         private double airspeed;
@@ -73,7 +74,7 @@ namespace FlightSimulatorApp
             set
             {
                 airspeed = value;
-                this.NotifyPropertyChanged("airspeed");
+                this.NotifyPropertyChanged("Airspeed");
             }
         }
         private double alttitude;
@@ -83,7 +84,7 @@ namespace FlightSimulatorApp
             set
             {
                 alttitude = value;
-                this.NotifyPropertyChanged("alttitude");
+                this.NotifyPropertyChanged("Alttitude");
             }
         }
         private double rollDeg;
@@ -93,7 +94,7 @@ namespace FlightSimulatorApp
             set
             {
                 rollDeg = value;
-                this.NotifyPropertyChanged("rollDeg");
+                this.NotifyPropertyChanged("RollDeg");
             }
         }
         private double pitchDeg;
@@ -103,7 +104,7 @@ namespace FlightSimulatorApp
             set
             {
                 pitchDeg = value;
-                this.NotifyPropertyChanged("pitchDeg");
+                this.NotifyPropertyChanged("PitchDeg");
             }
         }
         private double altimeter;
@@ -113,7 +114,7 @@ namespace FlightSimulatorApp
             set
             {
                 altimeter = value;
-                this.NotifyPropertyChanged("altimeter");
+                this.NotifyPropertyChanged("Altimeter");
             }
         }
         private double rudder;
@@ -123,7 +124,7 @@ namespace FlightSimulatorApp
             set
             {
                 rudder = value;
-                this.NotifyPropertyChanged("rudder");
+                this.NotifyPropertyChanged("Rudder");
             }
         }
         private double elevator;
@@ -133,7 +134,7 @@ namespace FlightSimulatorApp
             set
             {
                 elevator = value;
-                this.NotifyPropertyChanged("elevator");
+                this.NotifyPropertyChanged("Elevator");
             }
         }
         private double aileron;
@@ -143,7 +144,7 @@ namespace FlightSimulatorApp
             set
             {
                 aileron = value;
-                this.NotifyPropertyChanged("aileron");
+                this.NotifyPropertyChanged("Aileron");
             }
         }
         private double throttle;
@@ -153,7 +154,7 @@ namespace FlightSimulatorApp
             set
             {
                 throttle = value;
-                this.NotifyPropertyChanged("throttle");
+                this.NotifyPropertyChanged("Throttle");
             }
         }
         private double latitude;
@@ -163,7 +164,7 @@ namespace FlightSimulatorApp
             set
             {
                 latitude = value;
-                this.NotifyPropertyChanged("latitude");
+                this.NotifyPropertyChanged("Latitude");
             }
         }
         private double longitude;
@@ -173,7 +174,7 @@ namespace FlightSimulatorApp
             set
             {
                 longitude = value;
-                this.NotifyPropertyChanged("longitude");
+                this.NotifyPropertyChanged("Longitude");
             }
         }
 
