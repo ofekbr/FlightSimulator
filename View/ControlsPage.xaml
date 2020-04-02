@@ -33,10 +33,10 @@
                     <TextBlock FontSize="16">Air Speed</TextBlock>
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Margin="10,0,0,0">
-                    <TextBlock FontSize="16" Text="{Binding Path=HeadingDeg}"></TextBlock>
-                    <TextBlock FontSize="16" Text="{Binding Path=VerticalSpeed}"></TextBlock>
-                    <TextBlock FontSize="16" Text="{Binding Path=GroundSpeed}"></TextBlock>
-                    <TextBlock FontSize="16" Text="{Binding Path=AirSpeed}"></TextBlock>
+                    <TextBlock FontSize="16" Text="{Binding Path=VM_HeadingDeg}"></TextBlock>
+                    <TextBlock FontSize="16" Text="{Binding Path=VM_VerticalSpeed}"></TextBlock>
+                    <TextBlock FontSize="16" Text="{Binding Path=VM_GroundSpeed}"></TextBlock>
+                    <TextBlock FontSize="16" Text="{Binding Path=VM_AirSpeed}"></TextBlock>
                 </StackPanel>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="80,0,0,0">
@@ -47,10 +47,10 @@
                     <TextBlock FontSize="16" Text="Altimeter"></TextBlock>
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Margin="10,0,0,0">
-                    <TextBlock FontSize="16" Text="{Binding Alttitude}"/>
-                    <TextBlock FontSize="16" Text="{Binding RollDeg}"/>
-                    <TextBlock FontSize="16" Text="{Binding PitchDeg}"/>
-                    <TextBlock FontSize="16" Text="{Binding Altimeter}"/>
+                    <TextBlock FontSize="16" Text="{Binding VM_Alttitude}"/>
+                    <TextBlock FontSize="16" Text="{Binding VM_RollDeg}"/>
+                    <TextBlock FontSize="16" Text="{Binding VM_PitchDeg}"/>
+                    <TextBlock FontSize="16" Text="{Binding VM_Altimeter}"/>
                 </StackPanel>
             </StackPanel>
         </StackPanel>
@@ -58,23 +58,23 @@
         <StackPanel Orientation="Horizontal" Width="300" Margin="470,330,30,39">
             <StackPanel Orientation="Vertical">
                 <TextBlock FontSize="16" Text="Rudder"/>
-                <TextBlock FontSize="16" Text="0" TextAlignment="Center" Height="40"/>
+                <TextBlock FontSize="16" Text="???" TextAlignment="Center" MaxWidth="50"/>
             </StackPanel>
             <StackPanel Orientation="Vertical" Margin="20,0,0,0">
                 <TextBlock FontSize="16" Text="Elevator"/>
-                <TextBlock FontSize="16" Text="val"/>
+                <TextBlock FontSize="16" Text="???" TextAlignment="Center" MaxWidth="50"/>
             </StackPanel>
             <StackPanel Orientation="Vertical" Margin="20,0,0,0">
                 <TextBlock FontSize="16" Text="Aileron"/>
-                <TextBlock FontSize="16" Text="{Binding ElementName=Aileron, Path=Value}" HorizontalAlignment="Center" MaxWidth="50"/>
+                <TextBlock FontSize="16" Text="{Binding ElementName=Aileron, Path=Value}" TextAlignment="Center" MaxWidth="50"/>
             </StackPanel>
             <StackPanel Orientation="Vertical" Margin="20,0,0,0">
                 <TextBlock FontSize="16" Text="Throttle"/>
-                <TextBlock FontSize="16" Text="{Binding  ElementName=Throttle, Path=Value}" HorizontalAlignment="Center" MaxWidth="50"/>
+                <TextBlock FontSize="16" Text="{Binding  ElementName=Throttle, Path=Value}" TextAlignment="Center" MaxWidth="50"/>
             </StackPanel>
         </StackPanel>
 
-        <Slider x:Name="Aileron" Value="{Binding Aileron}" TickPlacement="BottomRight" IsSnapToTickEnabled="True" TickFrequency="0.1" HorizontalAlignment="Left" Margin="420,210,0,0" VerticalAlignment="Top" Width="200" RenderTransformOrigin="0.5,0.5">
+        <Slider x:Name="Aileron" TickPlacement="BottomRight" IsSnapToTickEnabled="True" TickFrequency="0.1" HorizontalAlignment="Left" Margin="420,210,0,0" VerticalAlignment="Top" Width="200" RenderTransformOrigin="0.5,0.5">
             <Slider.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -84,7 +84,7 @@
                 </TransformGroup>
             </Slider.RenderTransform>
         </Slider>
-        <Slider x:Name="Throttle" Value="{Binding Throttle}" TickPlacement="BottomRight" IsSnapToTickEnabled="True" TickFrequency="0.1" HorizontalAlignment="Left" Margin="360,210,0,0" VerticalAlignment="Top" Width="200" RenderTransformOrigin="0.5,0.5">
+        <Slider x:Name="Throttle" TickPlacement="BottomRight" IsSnapToTickEnabled="True" TickFrequency="0.1" HorizontalAlignment="Left" Margin="360,210,0,0" VerticalAlignment="Top" Width="200" RenderTransformOrigin="0.5,0.5">
             <Slider.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -107,8 +107,8 @@
                     <TextBlock Text="Longitude :"/>
                 </StackPanel>
                 <StackPanel Margin="5,0,0,0"  Orientation="Vertical">
-                    <TextBlock Text="{Binding Latitude}"/>
-                    <TextBlock Text="{Binding Longitude}"/>
+                    <TextBlock Text="{Binding VM_Latitude}"/>
+                    <TextBlock Text="{Binding VM_Longitude}"/>
                 </StackPanel>
             </StackPanel>
 

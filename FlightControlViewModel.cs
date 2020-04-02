@@ -39,161 +39,64 @@ namespace FlightSimulatorApp
         }
 
         //properties
-        private double headingDeg;
-        public double HeadingDeg
+        public double VM_HeadingDeg
         {
-            get { return headingDeg; }
-            set
-            {
-                headingDeg = value;
-                this.NotifyPropertyChanged("headingDeg");
-            }
+            get { return model.HeadingDeg; }
         }
-        private double verticalSpeed;
-        public double VerticalSpeed
+        public double VM_VerticalSpeed
         {
-            get { return verticalSpeed; }
-            set
-            {
-                verticalSpeed = value;
-                this.NotifyPropertyChanged("verticalSpeed");
-            }
+            get { return model.VerticalSpeed; }
         }
-        private double groundSpeed;
-        public double GroundSpeed
+        //private double groundSpeed;
+        public double VM_GroundSpeed
         {
-            get { return groundSpeed; }
-            set
-            {
-                groundSpeed = value;
-                this.NotifyPropertyChanged("groundSpeed");
-            }
+            get { return model.GroundSpeed; }
         }
-        private double airspeed;
-        public double AirSpeed
+        public double VM_AirSpeed
         {
-            get { return airspeed; }
-            set
-            {
-                airspeed = value;
-                this.NotifyPropertyChanged("airspeed");
-            }
+            get { return model.Airspeed; }
+
         }
-        private double alttitude;
-        public double Alttitude
+        public double VM_Alttitude
         {
-            get { return alttitude; }
-            set
-            {
-                alttitude = value;
-                this.NotifyPropertyChanged("alttitude");
-            }
+            get { return model.Alttitude; }
         }
-        private double rollDeg;
-        public double RollDeg
+        public double VM_RollDeg
         {
-            get { return rollDeg; }
-            set
-            {
-                rollDeg = value;
-                this.NotifyPropertyChanged("rollDeg");
-            }
+            get { return model.RollDeg; }
         }
-        private double pitchDeg;
-        public double PitchDeg
+        public double VM_PitchDeg
         {
-            get { return pitchDeg; }
-            set
-            {
-                pitchDeg = value;
-                this.NotifyPropertyChanged("pitchDeg");
-            }
+            get { return model.PitchDeg; }
         }
-        private double altimeter;
-        public double Altimeter
+        public double VM_Altimeter
         {
-            get { return altimeter; }
-            set
-            {
-                altimeter = value;
-                this.NotifyPropertyChanged("altimeter");
-            }
+            get { return model.Altimeter; }
+
         }
-        private double rudder;
-        public double Rudder
+        public double VM_Rudder
         {
-            get { return rudder; }
-            set
-            {
-                rudder = value;
-                this.NotifyPropertyChanged("rudder");
-            }
+            get { return model.Rudder; }
         }
-        private double elevator;
-        public double Elevator
+        public double VM_Elevator
         {
-            get { return elevator; }
-            set
-            {
-                elevator = value;
-                this.NotifyPropertyChanged("elevator");
-            }
+            get { return model.Elevator; }
         }
-        private double aileron;
-        public double Aileron
+        public double VM_Aileron
         {
-            get { return aileron; }
-            set
-            {
-                aileron = value;
-                this.NotifyPropertyChanged("aileron");
-            }
+            get { return model.Aileron; }
         }
-        private double throttle;
-        public double Throttle
+        public double VM_Throttle
         {
-            get { return throttle; }
-            set
-            {
-                throttle = value;
-                this.NotifyPropertyChanged("throttle");
-            }
+            get { return model.Throttle; }
         }
-        private double latitude;
-        public double Latitude
+        public double VM_Latitude
         {
-            get { return latitude; }
-            set
-            {
-                latitude = value;
-                this.NotifyPropertyChanged("latitude");
-            }
+            get { return model.Latitude; }
         }
-        private double longitude;
-        public double Longitude
+        public double VM_Longitude
         {
-            get { return longitude; }
-            set
-            {
-                longitude = value;
-                this.NotifyPropertyChanged("longitude");
-            }
-        }
-        public float Up
-        {
-            get; set;
-        }
-        public float Down
-        {
-            get; set;
-        }
-        public float Left
-        {
-            get; set;
-        }
-        public float Right
-        {
-            get; set;
+            get { return model.Longitude; }
         }
     }
 }
