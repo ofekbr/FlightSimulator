@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace FlightSimulatorApp
 {
@@ -26,5 +27,7 @@ namespace FlightSimulatorApp
         double Throttle { set; get; }
         double Latitude { set; get; }
         double Longitude { set; get; }
+        string Cordinates {set; get; }
+        string CenterMap { get;}
     }
 }
