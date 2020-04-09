@@ -28,8 +28,6 @@ namespace FlightSimulatorApp.View
             model =(new SimulatorModel(new MyTelnetClient()));
             vm = new FlightControlViewModel(model);
             InitializeComponent();
-            model.GroundSpeed = 10;
-            model.Latitude = 10;
         }
         private void connect_button_Click(object sender, RoutedEventArgs e)
         {

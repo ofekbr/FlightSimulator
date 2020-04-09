@@ -33,13 +33,13 @@
                     <TextBlock FontSize="16">Air Speed</TextBlock>
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Margin="10,0,0,0">
-                    <TextBlock FontSize="16" Text="{Binding Path=VM_HeadingDeg}"></TextBlock>
-                    <TextBlock FontSize="16" Text="{Binding Path=VM_VerticalSpeed}"></TextBlock>
-                    <TextBlock FontSize="16" Text="{Binding Path=VM_GroundSpeed}"></TextBlock>
-                    <TextBlock FontSize="16" Text="{Binding Path=VM_AirSpeed}"></TextBlock>
+                    <TextBlock FontSize="16" MaxWidth="50" MinWidth="50" Text="{Binding Path=VM_HeadingDeg, StringFormat=n4}"></TextBlock>
+                    <TextBlock FontSize="16" MaxWidth="50" MinWidth="50" Text="{Binding Path=VM_VerticalSpeed, StringFormat=n4}"></TextBlock>
+                    <TextBlock FontSize="16" MaxWidth="50" MinWidth="50" Text="{Binding Path=VM_GroundSpeed, StringFormat=n4}"></TextBlock>
+                    <TextBlock FontSize="16" MaxWidth="50" MinWidth="50" Text="{Binding Path=VM_AirSpeed, StringFormat=n4}"></TextBlock>
                 </StackPanel>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="80,0,0,0">
+            <StackPanel Orientation="Horizontal" Margin="25,0,0,0">
                 <StackPanel Orientation="Vertical">
                     <TextBlock FontSize="16" Text="Alttitude"></TextBlock>
                     <TextBlock FontSize="16" Text="Roll Degree"></TextBlock>
@@ -47,34 +47,34 @@
                     <TextBlock FontSize="16" Text="Altimeter"></TextBlock>
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Margin="10,0,0,0">
-                    <TextBlock FontSize="16" Text="{Binding VM_Alttitude}"/>
-                    <TextBlock FontSize="16" Text="{Binding VM_RollDeg}"/>
-                    <TextBlock FontSize="16" Text="{Binding VM_PitchDeg}"/>
-                    <TextBlock FontSize="16" Text="{Binding VM_Altimeter}"/>
+                    <TextBlock FontSize="16" MaxWidth="50" MinWidth="50" Text="{Binding VM_Alttitude, StringFormat=n4}"/>
+                    <TextBlock FontSize="16" MaxWidth="50" MinWidth="50" Text="{Binding VM_RollDeg, StringFormat=n4}"/>
+                    <TextBlock FontSize="16" MaxWidth="50" MinWidth="50" Text="{Binding VM_PitchDeg, StringFormat=n4}"/>
+                    <TextBlock FontSize="16" MaxWidth="50" MinWidth="50" Text="{Binding VM_Altimeter, StringFormat=n4}"/>
                 </StackPanel>
             </StackPanel>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Width="300" Margin="470,330,30,39">
+        <StackPanel Orientation="Horizontal" Margin="430,323,30,46">
             <StackPanel Orientation="Vertical">
-                <TextBlock FontSize="16" Text="Rudder"/>
-                <TextBlock FontSize="16" Text="???" TextAlignment="Center" MaxWidth="50"/>
-            </StackPanel>
-            <StackPanel Orientation="Vertical" Margin="20,0,0,0">
-                <TextBlock FontSize="16" Text="Elevator"/>
-                <TextBlock FontSize="16" Text="???" TextAlignment="Center" MaxWidth="50"/>
+                <TextBlock FontSize="16" Text="Throttle"/>
+                <TextBlock FontSize="16" Text="{Binding  ElementName=Throttle, Path=Value, StringFormat=n2}" TextAlignment="Center" MaxWidth="50"/>
             </StackPanel>
             <StackPanel Orientation="Vertical" Margin="20,0,0,0">
                 <TextBlock FontSize="16" Text="Aileron"/>
-                <TextBlock FontSize="16" Text="{Binding ElementName=Aileron, Path=Value}" TextAlignment="Center" MaxWidth="50"/>
+                <TextBlock FontSize="16" Text="{Binding ElementName=Aileron, Path=Value, StringFormat=n2}" TextAlignment="Center" MaxWidth="50"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Margin="60,0,0,0">
+                <TextBlock FontSize="16" Text="Rudder"/>
+                <TextBlock FontSize="16" Text="{Binding ElementName=joystick1, Path=X, StringFormat=n2}" TextAlignment="Center" MaxWidth="50"/>
             </StackPanel>
             <StackPanel Orientation="Vertical" Margin="20,0,0,0">
-                <TextBlock FontSize="16" Text="Throttle"/>
-                <TextBlock FontSize="16" Text="{Binding  ElementName=Throttle, Path=Value}" TextAlignment="Center" MaxWidth="50"/>
+                <TextBlock FontSize="16" Text="Elevator"/>
+                <TextBlock FontSize="16" Text="{Binding ElementName=joystick1, Path=Y, StringFormat=n2}" TextAlignment="Center" MaxWidth="50"/>
             </StackPanel>
         </StackPanel>
 
-        <Slider x:Name="Aileron" TickPlacement="BottomRight" IsSnapToTickEnabled="True" TickFrequency="0.1" HorizontalAlignment="Left" Margin="420,210,0,0" VerticalAlignment="Top" Width="200" RenderTransformOrigin="0.5,0.5">
+        <Slider x:Name="Aileron" TickPlacement="BottomRight" IsSnapToTickEnabled="True" TickFrequency="0.01" HorizontalAlignment="Left" Margin="431,210,0,0" VerticalAlignment="Top" Width="200" RenderTransformOrigin="0.5,0.5"  Minimum="-1" Maximum="1">
             <Slider.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -84,7 +84,7 @@
                 </TransformGroup>
             </Slider.RenderTransform>
         </Slider>
-        <Slider x:Name="Throttle" TickPlacement="BottomRight" IsSnapToTickEnabled="True" TickFrequency="0.1" HorizontalAlignment="Left" Margin="360,210,0,0" VerticalAlignment="Top" Width="200" RenderTransformOrigin="0.5,0.5">
+        <Slider x:Name="Throttle" TickPlacement="BottomRight" IsSnapToTickEnabled="True" TickFrequency="0.01" HorizontalAlignment="Left" Margin="360,210,0,0" VerticalAlignment="Top" Width="200" RenderTransformOrigin="0.5,0.5" Minimum="0" Maximum="1">
             <Slider.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -99,7 +99,7 @@
              CredentialsProvider="FZDHNjSBpsApSSRB09pf~U-rEk1yyBvYf-TdE8IG6sw~Ahx-TlEoICfQ_t6y3Po1MO8mvQzz8PpJWw1Oc8CMFvZkInCGNQBSuWaSlOIfbx3E"
              Center="32.002084, 34.872249">
             <m:Pushpin>
-                
+
             </m:Pushpin>
             <StackPanel HorizontalAlignment="Right" Height="40" VerticalAlignment="Top" Width="120" Orientation="Horizontal">
                 <StackPanel Orientation="Vertical">
