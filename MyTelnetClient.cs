@@ -6,11 +6,14 @@ using System.Net.Sockets;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace FlightSimulatorApp
 {
     class MyTelnetClient : ITelnetClient
     {
+        private Mutex mutex = new Mutex();
+        private Mutex mutex1 = new Mutex();
         private TcpClient tcpclnt;
         private Stream stm;
         public void write(string command)
@@ -19,15 +22,19 @@ namespace FlightSimulatorApp
             byte[] ba = asen.GetBytes(command);
             Console.WriteLine("Transmitting....." + command);
 
+            mutex.WaitOne();
             stm.Write(ba, 0, ba.Length);
+            mutex.ReleaseMutex();
 
             Console.WriteLine("the command was send succesfuly");
         }
         public string read()
         {
             byte[] bb = new byte[100];
-            int k = stm.Read(bb, 0, 100);
 
+            mutex1.WaitOne();
+            int k = stm.Read(bb, 0, 100);
+            mutex1.ReleaseMutex();
 
             StringBuilder builder = new StringBuilder();
             foreach (char value in bb)

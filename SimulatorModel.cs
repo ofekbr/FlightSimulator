@@ -159,50 +159,73 @@ namespace FlightSimulatorApp
             get { return rudder; }
             set
             {
-                rudder = value;
-                string command = "set /controls/flight/rudder "+ rudder.ToString() + "\r\n";
-                commandsForServer.Enqueue(command);
-                this.NotifyPropertyChanged("Rudder");
-
+                if (value >= -1 && value <= 1)
+                {
+                    if (rudder != value)
+                    {
+                        rudder = value;
+                        string command = "set /controls/flight/rudder " + rudder.ToString() + "\r\n";
+                        commandsForServer.Enqueue(command);
+                        this.NotifyPropertyChanged("Rudder");
+                    }
+                }
             }
         }
+
         private double elevator;
         public double Elevator
         {
             get { return elevator; }
             set
             {
-                elevator = value;
-                string command = "set /controls/flight/elevator "+ elevator.ToString() + "\r\n";
-                commandsForServer.Enqueue(command);
-                this.NotifyPropertyChanged("Elevator");
-
+                if (value >= -1 && value <= 1)
+                {
+                    if (elevator != value)
+                    {
+                        elevator = value;
+                        string command = "set /controls/flight/elevator " + elevator.ToString() + "\r\n";
+                        commandsForServer.Enqueue(command);
+                        this.NotifyPropertyChanged("Elevator");
+                    }
+                }
             }
         }
+
         private double aileron;
         public double Aileron
         {
             get { return aileron; }
             set
             {
-                aileron = value;
-                string command = "set /controls/flight/aileron "+ aileron.ToString() + "\r\n";
-                commandsForServer.Enqueue(command);
-                this.NotifyPropertyChanged("Aileron");
-
+                if (value >= -1 && value <= 1)
+                {
+                    if (aileron != value)
+                    {
+                    aileron = value;
+                    string command = "set /controls/flight/aileron "+ aileron.ToString() + "\r\n";
+                    commandsForServer.Enqueue(command);
+                    this.NotifyPropertyChanged("Aileron");
+                    }
+                }
             }
         }
+
         private double throttle;
         public double Throttle
         {
             get { return throttle; }
             set
             {
-                throttle = value;
-                string command = "set /controls/engines/current-engine/throttle "+ throttle.ToString() + "\r\n";
-                commandsForServer.Enqueue(command);
-                this.NotifyPropertyChanged("Throttle");
-
+                if (value <= 1 && value >= 0)
+                {
+                    if (throttle != value)
+                    {
+                        throttle = value;
+                        string command = "set /controls/engines/current-engine/throttle " + throttle.ToString() + "\r\n";
+                        commandsForServer.Enqueue(command);
+                        this.NotifyPropertyChanged("Throttle");
+                    }
+                }
             }
         }
 
@@ -221,19 +244,6 @@ namespace FlightSimulatorApp
         }
         public void start()
         {
-            new Thread(delegate()
-            {
-                while(!m_stop)
-                {
-                    if (commandsForServer.Count() > 0) {
-                        m_telnetClient.write(commandsForServer.Peek());
-                        commandsForServer.Dequeue();
-                        Thread.Sleep(100);//TODO change 
-                    }
-                }
-                Console.WriteLine("finished \"set\" thread");
-            }).Start();
-
             new Thread(delegate ()
             {
                 while (!m_stop)
@@ -302,15 +312,24 @@ namespace FlightSimulatorApp
                         Console.WriteLine("longitude value is incorrect");
                     }
                     Cordinates = Longitude.ToString() + "," + Latitude.ToString();
-                    
+
+                    while (commandsForServer.Count() > 0)
+                    {
+
+                        {
+                            m_telnetClient.write(commandsForServer.Peek());
+                            m_telnetClient.read();
+                        }
+                        commandsForServer.Dequeue();
+                    }
+
+
                     Thread.Sleep(250);//TODO change 
 
                 }
                 Console.WriteLine("finished \"get\" thread");
             }).Start();
         }
-
-
     }
 }
 

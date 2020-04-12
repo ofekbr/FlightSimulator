@@ -44,12 +44,18 @@ namespace FlightSimulatorApp.View
                 else
                 {
                     connect_button.Content = "Connecting...";
-                    //vm.connect(IP.Text, Int32.Parse(port.Text));
-                    //vm.start();
+                    vm.connect(IP.Text, Int32.Parse(port.Text));
+                    vm.start();
                     cp = new ControlsPage(vm);
                     this.NavigationService.Navigate(cp);
                 }
             }                        
+        }
+
+        private void _default_Click(object sender, RoutedEventArgs e)
+        {
+            IP.Text = "127.0.0.1";
+            port.Text = "5402";
         }
     }
 }
