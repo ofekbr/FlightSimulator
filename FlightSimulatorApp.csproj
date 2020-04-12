@@ -131,6 +131,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+    <Resource Include="View\airplane.jpeg" />
     <Content Include="View\Microsoft.Maps.MapControl.WPF.dll" />
     <Resource Include="View\Microsoft.Maps.MapControl.WPF.xml" />
   </ItemGroup>
