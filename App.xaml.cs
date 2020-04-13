@@ -14,25 +14,68 @@ namespace FlightSimulatorApp
     public partial class App : Application
     {
         ISimulatorModel model;
-        FlightControlViewModel vm;
+        ControlsVM controlVM;
+        MapVM mapVM;
+        DashBoardVM dashVM;
+        ErrorVm errorVM;
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             Model = new SimulatorModel(new MyTelnetClient());
-            VM = new FlightControlViewModel(model);
+            ControlsVM = new ControlsVM(model);
+            MapVM = new MapVM(model);
+            DashVM = new DashBoardVM(model);
+            errorVM = new ErrorVm(model);
         }
 
-        public FlightControlViewModel VM
+        public ErrorVm ErrorVm
         {
             get
             {
-                return this.vm;
+                return this.errorVM;
             }
             set
             {
-                this.vm = value;
+                this.errorVM = value;
             }
         }
+
+        public ControlsVM ControlsVM
+        {
+            get
+            {
+                return this.controlVM;
+            }
+            set
+            {
+                this.controlVM = value;
+            }
+        }
+
+        public MapVM MapVM
+        {
+            get
+            {
+                return this.mapVM;
+            }
+            set
+            {
+                this.mapVM = value;
+            }
+        }
+
+        public DashBoardVM DashVM
+        {
+            get
+            {
+                return this.dashVM;
+            }
+            set
+            {
+                this.dashVM = value;
+            }
+        }
+
         public ISimulatorModel Model
         {
             get

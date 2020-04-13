@@ -4,100 +4,14 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:FlightSimulatorApp.View"
-      xmlns:Controls="clr-namespace:FlightSimulatorApp.View"
-      xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ControlsPage">
 
     <Grid>
-
-        <Controls:Joystick x:Name="joystick1" X="{Binding Path=VM_Rudder, Mode=OneWayToSource}" Y="{Binding Path=VM_Elevator, Mode=OneWayToSource}" Margin="548,94,-254,-94" RenderTransformOrigin="0.0,0.0">
-            <Controls:Joystick.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform ScaleY="0.5" ScaleX="0.5"/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform X="0" Y="0"/>
-                </TransformGroup>
-            </Controls:Joystick.RenderTransform>
-        </Controls:Joystick>
-        <Label HorizontalAlignment="Left" Margin="577,304,0,0" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="730,21,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <StackPanel x:Name="SimulatorValues" HorizontalAlignment="Left" Height="88" Margin="402,10,0,0" VerticalAlignment="Top" Width="380" Orientation="Horizontal">
-            <StackPanel Orientation="Horizontal">
-                <StackPanel Orientation="Vertical">
-                    <TextBlock FontSize="16">Heading Degree</TextBlock>
-                    <TextBlock FontSize="16">Vertical Speed</TextBlock>
-                    <TextBlock FontSize="16">Ground Speed</TextBlock>
-                    <TextBlock FontSize="16">Air Speed</TextBlock>
-                </StackPanel>
-                <StackPanel Orientation="Vertical" Margin="10,0,0,0">
-                    <TextBlock FontSize="16" MaxWidth="50" MinWidth="50" Text="{Binding Path=VM_HeadingDeg, StringFormat=n4}"></TextBlock>
-                    <TextBlock FontSize="16" MaxWidth="50" MinWidth="50" Text="{Binding Path=VM_VerticalSpeed, StringFormat=n4}"></TextBlock>
-                    <TextBlock FontSize="16" MaxWidth="50" MinWidth="50" Text="{Binding Path=VM_GroundSpeed, StringFormat=n4}"></TextBlock>
-                    <TextBlock FontSize="16" MaxWidth="50" MinWidth="50" Text="{Binding Path=VM_AirSpeed, StringFormat=n4}"></TextBlock>
-                </StackPanel>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="25,0,0,0">
-                <StackPanel Orientation="Vertical">
-                    <TextBlock FontSize="16" Text="Alttitude"></TextBlock>
-                    <TextBlock FontSize="16" Text="Roll Degree"></TextBlock>
-                    <TextBlock FontSize="16" Text="Pitch Degree"></TextBlock>
-                    <TextBlock FontSize="16" Text="Altimeter"></TextBlock>
-                </StackPanel>
-                <StackPanel Orientation="Vertical" Margin="10,0,0,0">
-                    <TextBlock FontSize="16" MaxWidth="50" MinWidth="50" Text="{Binding VM_Alttitude, StringFormat=n4}"/>
-                    <TextBlock FontSize="16" MaxWidth="50" MinWidth="50" Text="{Binding VM_RollDeg, StringFormat=n4}"/>
-                    <TextBlock FontSize="16" MaxWidth="50" MinWidth="50" Text="{Binding VM_PitchDeg, StringFormat=n4}"/>
-                    <TextBlock FontSize="16" MaxWidth="50" MinWidth="50" Text="{Binding VM_Altimeter, StringFormat=n4}"/>
-                </StackPanel>
-            </StackPanel>
-        </StackPanel>
-
-        <StackPanel Orientation="Horizontal" Margin="430,323,30,46">
-            <StackPanel Orientation="Vertical">
-                <TextBlock FontSize="16" Text="Throttle"/>
-                <TextBlock FontSize="16" Text="{Binding  ElementName=Throttle, Path=Value, StringFormat=n2}" TextAlignment="Center" MaxWidth="50"/>
-            </StackPanel>
-            <StackPanel Orientation="Vertical" Margin="20,0,0,0">
-                <TextBlock FontSize="16" Text="Aileron"/>
-                <TextBlock FontSize="16" Text="{Binding ElementName=Aileron, Path=Value, StringFormat=n2}" TextAlignment="Center" MaxWidth="50"/>
-            </StackPanel>
-            <StackPanel Orientation="Vertical" Margin="60,0,0,0">
-                <TextBlock FontSize="16" Text="Rudder"/>
-                <TextBlock FontSize="16" Text="{Binding ElementName=joystick1, Path=X, StringFormat=n2}" TextAlignment="Center" MaxWidth="50"/>
-            </StackPanel>
-            <StackPanel Orientation="Vertical" Margin="20,0,0,0">
-                <TextBlock FontSize="16" Text="Elevator"/>
-                <TextBlock FontSize="16" Text="{Binding ElementName=joystick1, Path=Y, StringFormat=n2, NotifyOnSourceUpdated=True}" TextAlignment="Center" MaxWidth="50"/>
-            </StackPanel>
-        </StackPanel>
-
-        <Slider x:Name="Aileron" Value="{Binding Path=VM_Aileron, Mode=OneWayToSource}" TickPlacement="BottomRight" IsSnapToTickEnabled="True" TickFrequency="0.01" HorizontalAlignment="Left" Margin="431,210,0,0" VerticalAlignment="Top" Width="200" RenderTransformOrigin="0.5,0.5"  Minimum="-1" Maximum="1">
-            <Slider.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="270"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Slider.RenderTransform>
-        </Slider>
-        <Slider x:Name="Throttle" Value="{Binding Path=VM_Throttle, Mode=OneWayToSource}" TickPlacement="BottomRight" IsSnapToTickEnabled="True" TickFrequency="0.01" HorizontalAlignment="Left" Margin="360,210,0,0" VerticalAlignment="Top" Width="200" RenderTransformOrigin="0.5,0.5" Minimum="0" Maximum="1">
-            <Slider.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="270"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Slider.RenderTransform>
-        </Slider>
-
-        <m:Map x:Name="myMap" Margin="10,10,400,110"             CredentialsProvider="FZDHNjSBpsApSSRB09pf~U-rEk1yyBvYf-TdE8IG6sw~Ahx-TlEoICfQ_t6y3Po1MO8mvQzz8PpJWw1Oc8CMFvZkInCGNQBSuWaSlOIfbx3E"             Center="{Binding Path = VM_CenterMap, Mode=OneWay}">            <m:Pushpin x:Name="pushPin" Location="{Binding Path=VM_Cordinates, Mode=OneWay}" >                <m:Pushpin.Background>                    <ImageBrush ImageSource="airplane.jpeg">                    </ImageBrush>                </m:Pushpin.Background>            </m:Pushpin>            <StackPanel HorizontalAlignment="Right" Height="40" VerticalAlignment="Top" Width="120" Orientation="Horizontal">                <StackPanel Orientation="Vertical">                    <TextBlock Text="Latitude :"/>                    <TextBlock Text="Longitude :"/>                </StackPanel>                <StackPanel Margin="5,0,0,0"  Orientation="Vertical">                    <TextBlock Text="{Binding VM_Latitude}"/>                    <TextBlock Text="{Binding VM_Longitude}"/>
-                </StackPanel>
-            </StackPanel>
-        </m:Map>
+        <local:Controll x:Name="Controls" Margin="415,103,-451,-68" RenderTransformOrigin="0.5,0.5" Height="415" Width="836"/>
+        <local:Map x:Name="Map" VerticalAlignment="Top" HorizontalAlignment="Left" Height="300" Width="400" Margin="10,10,0,0"/>
+        <local:DashBoard x:Name="DashBoard" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,10,10,0"/>
+        <local:Error x:Name="Error" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10,0,0,17" Height="100"/>
     </Grid>
 </Page>

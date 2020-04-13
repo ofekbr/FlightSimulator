@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="FlightSimulatorApp.View.Map"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FlightSimulatorApp.View"
+             xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
+
+             mc:Ignorable="d" 
+             d:DesignHeight="350" d:DesignWidth="400">
+    <Grid>
+        <m:Map x:Name="myMap"             CredentialsProvider="FZDHNjSBpsApSSRB09pf~U-rEk1yyBvYf-TdE8IG6sw~Ahx-TlEoICfQ_t6y3Po1MO8mvQzz8PpJWw1Oc8CMFvZkInCGNQBSuWaSlOIfbx3E"             Center="{Binding Path = VM_CenterMap, Mode=OneWay}">            <m:Pushpin x:Name="pushPin" Location="{Binding Path=VM_Cordinates, Mode=OneWay}" >                <m:Pushpin.Background>                    <ImageBrush ImageSource="airplane.jpeg">                    </ImageBrush>                </m:Pushpin.Background>            </m:Pushpin>            <StackPanel HorizontalAlignment="Right" Height="40" VerticalAlignment="Top" Width="120" Orientation="Horizontal">                <StackPanel Orientation="Vertical">                    <TextBlock Text="Latitude :"/>                    <TextBlock Text="Longitude :"/>                </StackPanel>                <StackPanel Margin="5,0,0,0"  Orientation="Vertical">                    <TextBlock Text="{Binding VM_Latitude}"/>                    <TextBlock Text="{Binding VM_Longitude}"/>
+                </StackPanel>
+            </StackPanel>
+        </m:Map>
+
+    </Grid>
+</UserControl>

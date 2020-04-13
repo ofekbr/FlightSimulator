@@ -21,13 +21,24 @@ namespace FlightSimulatorApp.View
     /// </summary>
     public partial class ControlsPage : Page
     {
-        FlightControlViewModel vm;
-        public ControlsPage(FlightControlViewModel viewmodel)
+        MapVM mapVM;
+        ControlsVM controlsVM;
+        DashBoardVM dashBoardVM;
+        ErrorVm errorVm;
+        //Error errorComponent;
+        public ControlsPage(MapVM map, ControlsVM controls, DashBoardVM dashBoard, ErrorVm error)
         {
-            vm = viewmodel;
+            errorVm = error;
+            mapVM = map;
+            controlsVM = controls;
+            dashBoardVM = dashBoard;
             InitializeComponent();
-            DataContext = vm;
+            Map.DataContext = mapVM;
+            DashBoard.DataContext = dashBoardVM;
+            Controls.DataContext = controlsVM;
+            Error.DataContext = errorVm;
+           // errorComponent = Error as Error;
+           // errorComponent.init();
         }
-
     }
 }

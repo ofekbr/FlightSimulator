@@ -9,7 +9,7 @@ namespace FlightSimulatorApp
 {
     public class FlightControlViewModel : INotifyPropertyChanged
     {
-        private ISimulatorModel model;
+        protected ISimulatorModel model;
         public FlightControlViewModel(ISimulatorModel sm)
         {
             this.model = sm;
@@ -38,7 +38,7 @@ namespace FlightSimulatorApp
         }
 
         //properties
-        public double VM_HeadingDeg
+        /*public double VM_HeadingDeg
         {
             get { return model.HeadingDeg; }
         }
@@ -71,9 +71,9 @@ namespace FlightSimulatorApp
         {
             get { return model.Altimeter; }
 
-        }
+        }*/
        
-        public double VM_Rudder
+       /* public double VM_Rudder
         {
             get { return model.Rudder; }
             set
@@ -108,9 +108,9 @@ namespace FlightSimulatorApp
                 model.Throttle = value;
                 this.NotifyPropertyChanged("Throttle");
             }
-        }
+        }*/
         
-        public double VM_Latitude
+        /*public double VM_Latitude
         {
             get { return model.Latitude; }
         }
@@ -125,7 +125,7 @@ namespace FlightSimulatorApp
         public string VM_CenterMap
         {
             get { return model.CenterMap; }
-        }
+        }*/
          
     }
 }

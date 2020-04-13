@@ -6,21 +6,30 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.ComponentModel;
+using System.IO;
 
 namespace FlightSimulatorApp
 {
     class SimulatorModel : ISimulatorModel
     {
+        String connectionError = "Server is unresponsive !\nPlease restart both simulator server and the program.";
         volatile Boolean m_stop;
         ITelnetClient m_telnetClient;
         Queue<string> commandsForServer = new Queue<string>();
 
         public event PropertyChangedEventHandler PropertyChanged;
+        public event ErrorMessage SendError;
 
         public void NotifyPropertyChanged(string propName)
         {
             if (this.PropertyChanged != null)
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
+        }
+
+        public void NotifySendError(string message)
+        {
+            if (this.SendError != null)
+                this.SendError(message);
         }
 
         public SimulatorModel(ITelnetClient telnetClient)
@@ -40,6 +49,17 @@ namespace FlightSimulatorApp
         }
 
         //properties
+        private String errorMessage;
+        public String ErrorMessage
+        {
+            get { return errorMessage; }
+            set
+            {
+                errorMessage = value + errorMessage;
+                this.NotifyPropertyChanged("ErrorMessage");
+            }
+        }
+
         private double headingDeg;
         public double HeadingDeg
         {
@@ -240,92 +260,162 @@ namespace FlightSimulatorApp
                 }
                 return centerMap;
             }
-            
         }
         public void start()
         {
             new Thread(delegate ()
             {
+                List<String> getMessages = new List<String>();
+                getMessages.Add("get /instrumentation/heading-indicator/indicated-heading-deg\r\n");
+                getMessages.Add("get /instrumentation/gps/indicated-vertical-speed\r\n");
+                getMessages.Add("get /instrumentation/gps/indicated-ground-speed-kt\r\n");
+                getMessages.Add("get /instrumentation/airspeed-indicator/indicated-speed-kt\r\n");
+                getMessages.Add("get /instrumentation/gps/indicated-altitude-ft\r\n");
+                getMessages.Add("get /instrumentation/attitude-indicator/internal-roll-deg\r\n");
+                getMessages.Add("get /instrumentation/attitude-indicator/internal-pitch-deg\r\n");
+                getMessages.Add("get /instrumentation/altimeter/indicated-altitude-ft\r\n");
+                getMessages.Add("get /position/latitude-deg\r\n");
+                getMessages.Add("get /position/longitude-deg\r\n");
+
                 while (!m_stop)
                 {
+                    bool everythingsFine = true;
                     //for dashbord
-                    m_telnetClient.write("get /instrumentation/heading-indicator/indicated-heading-deg\r\n");
-                    try {
-                        HeadingDeg = Double.Parse(m_telnetClient.read());
-                    } catch(Exception) {
-                        Console.WriteLine("headingDeg value is incorrect");
-                    } 
-                    m_telnetClient.write("get /instrumentation/gps/indicated-vertical-speed\r\n");
-                    try {
-                        VerticalSpeed = Double.Parse(m_telnetClient.read());
-                    } catch(Exception) {
-                        Console.WriteLine("verticalSpeed value is incorrect");
+                    for (int i = 0; i < 10; i++)
+                    {
+                        try
+                        {
+                            m_telnetClient.write(getMessages[i]);
+                        }
+                        catch (Exception)
+                        {
+                            //cant write get message, server closed
+                            /*ErrorMessage = connectionError;
+                            m_stop = true;
+                            break;*/
+                        }
+                        try
+                        {
+                            switch (i)
+                            {
+                                case 0:
+                                    HeadingDeg = Double.Parse(m_telnetClient.read());
+                                    break;
+                                case 1:
+                                    VerticalSpeed = Double.Parse(m_telnetClient.read());
+                                    break;
+                                case 2:
+                                    GroundSpeed = Double.Parse(m_telnetClient.read());
+                                    break;
+                                case 3:
+                                    Airspeed = Double.Parse(m_telnetClient.read());
+                                    break;
+                                case 4:
+                                    Alttitude = Double.Parse(m_telnetClient.read());
+                                    break;
+                                case 5:
+                                    RollDeg = Double.Parse(m_telnetClient.read());
+                                    break;
+                                case 6:
+                                    PitchDeg = Double.Parse(m_telnetClient.read());
+                                    break;
+                                case 7:
+                                    Altimeter = Double.Parse(m_telnetClient.read());
+                                    break;
+                                case 8:
+                                    Latitude = Double.Parse(m_telnetClient.read());
+                                    if (Latitude >= 90 || Latitude <= -90)
+                                    {
+                                        everythingsFine = false;
+                                        ErrorMessage = "Latitude out of range";
+                                    }
+                                    break;
+                                case 9:
+                                    Longitude = Double.Parse(m_telnetClient.read());
+                                    if (Longitude >= 180 || Longitude <= -180)
+                                    {
+                                        everythingsFine = false;
+                                        ErrorMessage = "Longitude out of range";
+                                    }
+                                    break;
+                                default:
+                                    ErrorMessage = "shit pavel im sorry dont ruin my grade, something unexcepted happened :(";
+                                    break;
+                            }
+                        }
+                        catch (FormatException)
+                        {
+                            //incorrect values
+                            switch (i)
+                            {
+                                case 0:
+                                    ErrorMessage = "HeadingDeg value is incorrect\n";
+                                    break;
+                                case 1:
+                                    ErrorMessage = "verticalSpeed value is incorrect\n";
+                                    break;
+                                case 2:
+                                    ErrorMessage = "GroundSpeed value is incorrect\n";
+                                    break;
+                                case 3:
+                                    ErrorMessage = "Airspeed value is incorrect\n";
+                                    break;
+                                case 4:
+                                    ErrorMessage = "Alttitude value is incorrect\n";
+                                    break;
+                                case 5:
+                                    ErrorMessage = "RollDeg value is incorrect\n";
+                                    break;
+                                case 6:
+                                    ErrorMessage = "PitchDeg value is incorrect\n";
+                                    break;
+                                case 7:
+                                    ErrorMessage = "Altimeter value is incorrect\n";
+                                    break;
+                                case 8:
+                                    ErrorMessage = "Latitude value is incorrect\n";
+                                    everythingsFine = false;
+                                    break;
+                                case 9:
+                                    ErrorMessage = "Longitude value is incorrect\n";
+                                    everythingsFine = false;
+                                    break;
+                                default:
+                                    ErrorMessage = "shit\n";
+                                    break;
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            // cant read values, server closed.
+                            /*ErrorMessage = connectionError;
+                            m_stop = true;
+                            break;*/
+                        }
                     }
-                    m_telnetClient.write("get /instrumentation/gps/indicated-ground-speed-kt\r\n");
-                    try {
-                        GroundSpeed = Double.Parse(m_telnetClient.read());
-                    } catch(Exception) {
-                        Console.WriteLine("groundSpeed value is incorrect");
-                    }
-                    m_telnetClient.write("get /instrumentation/airspeed-indicator/indicated-speed-kt\r\n");
-                    try {
-                        Airspeed = Double.Parse(m_telnetClient.read());
-                    } catch(Exception e) {
-                        Console.WriteLine("airspeed value is incorrect");
-                    } 
-                    m_telnetClient.write("get /instrumentation/gps/indicated-altitude-ft\r\n");
-                    try {
-                        Alttitude = Double.Parse(m_telnetClient.read());
-                    } catch(Exception) {
-                        Console.WriteLine("alttitude value is incorrect");
-                    }
-                    m_telnetClient.write("get /instrumentation/attitude-indicator/internal-roll-deg\r\n");
-                    try {
-                        RollDeg = Double.Parse(m_telnetClient.read());
-                    } catch(Exception) {
-                        Console.WriteLine("rollDeg value is incorrect");
-                    }
-                    m_telnetClient.write("get /instrumentation/attitude-indicator/internal-pitch-deg\r\n");
-                    try {
-                        PitchDeg = Double.Parse(m_telnetClient.read());
-                    } catch(Exception) {
-                        Console.WriteLine("pitchDeg value is incorrect");
-                    }
-                    m_telnetClient.write("get /instrumentation/altimeter/indicated-altitude-ft\r\n");
-                    try {
-                        Altimeter = Double.Parse(m_telnetClient.read());
-                    } catch(Exception) {
-                        Console.WriteLine("altimeter value is incorrect");
-                    }
-                    
-                    //for map
-                    m_telnetClient.write("get /position/latitude-deg\r\n");
-                    try {
-                        Latitude = Double.Parse(m_telnetClient.read());
-                    } catch(Exception) {
-                        Console.WriteLine("latitude value is incorrect");
-                    } 
-                    m_telnetClient.write("get /position/longitude-deg\r\n");
-                    try {
-                        Longitude = Double.Parse(m_telnetClient.read());
-                    } catch(Exception) {
-                        Console.WriteLine("longitude value is incorrect");
-                    }
+                    if (everythingsFine)
+                    {
                     Cordinates = Longitude.ToString() + "," + Latitude.ToString();
+                    }
 
                     while (commandsForServer.Count() > 0)
                     {
-
                         {
+                            try
+                            {
                             m_telnetClient.write(commandsForServer.Peek());
                             m_telnetClient.read();
+                            }
+                            catch (Exception)
+                            {
+                                ErrorMessage = connectionError;
+                                m_stop = true;
+                                break;
+                            }
                         }
                         commandsForServer.Dequeue();
                     }
-
-
-                    Thread.Sleep(250);//TODO change 
-
+                    Thread.Sleep(250);                    
                 }
                 Console.WriteLine("finished \"get\" thread");
             }).Start();
