@@ -13,6 +13,36 @@ namespace FlightSimulatorApp
     /// </summary>
     public partial class App : Application
     {
+        ISimulatorModel model;
+        FlightControlViewModel vm;
 
+        private void Application_Startup(object sender, StartupEventArgs e)
+        {
+            Model = new SimulatorModel(new MyTelnetClient());
+            VM = new FlightControlViewModel(model);
+        }
+
+        public FlightControlViewModel VM
+        {
+            get
+            {
+                return this.vm;
+            }
+            set
+            {
+                this.vm = value;
+            }
+        }
+        public ISimulatorModel Model
+        {
+            get
+            {
+                return this.model;
+            }
+            set
+            {
+                this.model = value;
+            }
+        }
     }
 }

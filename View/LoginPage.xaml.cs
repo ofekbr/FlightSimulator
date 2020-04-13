@@ -20,14 +20,14 @@ namespace FlightSimulatorApp.View
     /// </summary>
     public partial class LoginPage : Page
     {
-        SimulatorModel model;
+        ISimulatorModel model;
         FlightControlViewModel vm;
         ControlsPage cp;
         public LoginPage()
         {
-            model =(new SimulatorModel(new MyTelnetClient()));
-            vm = new FlightControlViewModel(model);
             InitializeComponent();
+            vm = (Application.Current as App).VM;
+            model = (Application.Current as App).Model;
         }
         private void connect_button_Click(object sender, RoutedEventArgs e)
         {
