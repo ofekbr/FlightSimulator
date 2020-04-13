@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -66,8 +67,8 @@ namespace FlightSimulatorApp.View
 
         private void _default_Click(object sender, RoutedEventArgs e)
         {
-            IP.Text = "127.0.0.1";
-            port.Text = "5402";
+            IP.Text = ConfigurationManager.AppSettings["ip"];
+            port.Text = ConfigurationManager.AppSettings["port"];
         }
     }
 }
