@@ -60,6 +60,7 @@ namespace FlightSimulatorApp
         public void connect(string ip, int port)
         {
             tcpclnt = new TcpClient();
+            tcpclnt.ReceiveTimeout = 10000;
             Console.WriteLine("Connecting.....");
 
             tcpclnt.Connect(ip, port);

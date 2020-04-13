@@ -20,14 +20,18 @@ namespace FlightSimulatorApp.View
     /// </summary>
     public partial class LoginPage : Page
     {
-        SimulatorModel model;
-        FlightControlViewModel vm;
+        MapVM mapVM;
+        ControlsVM controlsVM;
+        DashBoardVM dashBoardVM;
+        ErrorVm errorVm;
         ControlsPage cp;
         public LoginPage()
         {
-            model =(new SimulatorModel(new MyTelnetClient()));
-            vm = new FlightControlViewModel(model);
             InitializeComponent();
+            controlsVM = (Application.Current as App).ControlsVM;
+            dashBoardVM = (Application.Current as App).DashVM;
+            mapVM = (Application.Current as App).MapVM;
+            errorVm = (Application.Current as App).ErrorVm;
         }
         private void connect_button_Click(object sender, RoutedEventArgs e)
         {
@@ -44,10 +48,18 @@ namespace FlightSimulatorApp.View
                 else
                 {
                     connect_button.Content = "Connecting...";
-                    vm.connect(IP.Text, Int32.Parse(port.Text));
-                    vm.start();
-                    cp = new ControlsPage(vm);
+                    try
+                    {
+                    controlsVM.connect(IP.Text, Int32.Parse(port.Text));
+                    controlsVM.start();
+                    cp = new ControlsPage(mapVM, controlsVM, dashBoardVM, errorVm);
                     this.NavigationService.Navigate(cp);
+                    }
+                    catch (Exception)
+                    {
+                        Error.Visibility = Visibility.Visible;
+                    }
+                    connect_button.Content = "Connect";
                 }
             }                        
         }

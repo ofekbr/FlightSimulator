@@ -7,12 +7,17 @@ using System.ComponentModel;
 
 namespace FlightSimulatorApp
 {
+    public delegate void ErrorMessage(String message);
+
     public interface ISimulatorModel : INotifyPropertyChanged
     {
+        event ErrorMessage SendError;
+
         //connection
         void connect(string ip, int port);
         void disconnect();
         void start();
+        String ErrorMessage { get; set; }
         double HeadingDeg { set; get; }
         double VerticalSpeed { set; get; }
         double GroundSpeed { set; get; }
