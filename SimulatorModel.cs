@@ -48,6 +48,31 @@ namespace FlightSimulatorApp
             m_telnetClient.disconnect();
         }
 
+        public void centerMapCordinate()
+        {
+            CenterMap = cordinate;
+        }
+
+        private Boolean mapInisialized = false;
+        private string centerMap;
+        public string CenterMap
+        {
+            get
+            {
+                if (!mapInisialized)
+                {
+                    centerMap = cordinate;
+                    mapInisialized = true;
+                }
+                return centerMap;
+            }
+            set
+            {
+                centerMap = value;
+                this.NotifyPropertyChanged("CenterMap");
+
+            }
+        }
         //properties
         private String errorMessage;
         public String ErrorMessage
@@ -249,18 +274,7 @@ namespace FlightSimulatorApp
             }
         }
 
-        private Boolean mapInisialized =false;
-        private string centerMap;
-        public string CenterMap
-        {
-            get {
-                if (!mapInisialized) {
-                    centerMap = cordinate;
-                    mapInisialized = true;
-                }
-                return centerMap;
-            }
-        }
+      
         public void start()
         {
             new Thread(delegate ()
@@ -290,9 +304,9 @@ namespace FlightSimulatorApp
                         catch (Exception)
                         {
                             //cant write get message, server closed
-                            /*ErrorMessage = connectionError;
+                            ErrorMessage = connectionError;
                             m_stop = true;
-                            break;*/
+                            break;
                         }
                         try
                         {
@@ -388,9 +402,9 @@ namespace FlightSimulatorApp
                         catch (Exception)
                         {
                             // cant read values, server closed.
-                            /*ErrorMessage = connectionError;
+                            ErrorMessage = connectionError;
                             m_stop = true;
-                            break;*/
+                            break;
                         }
                     }
                     if (everythingsFine)
@@ -417,7 +431,7 @@ namespace FlightSimulatorApp
                     }
                     Thread.Sleep(250);                    
                 }
-                Console.WriteLine("finished \"get\" thread");
+                Console.WriteLine("finished get and set thread");
             }).Start();
         }
     }
