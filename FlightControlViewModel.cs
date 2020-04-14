@@ -37,6 +37,11 @@ namespace FlightSimulatorApp
             model.start();
         }
 
+        public void disconnect()
+        {
+            model.disconnect();
+        }
+
         //properties
         /*public double VM_HeadingDeg
         {

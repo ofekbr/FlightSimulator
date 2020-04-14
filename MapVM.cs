@@ -11,6 +11,11 @@ namespace FlightSimulatorApp
     {
         public MapVM(ISimulatorModel sm) : base(sm) {}
 
+        public void centerMapCordinate()
+        {
+            model.centerMapCordinate();
+        }
+
         //properties
         public double VM_Latitude
         {
@@ -28,5 +33,7 @@ namespace FlightSimulatorApp
         {
             get { return model.CenterMap; }
         }
+
+        
     }
 }

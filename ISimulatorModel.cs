@@ -17,6 +17,9 @@ namespace FlightSimulatorApp
         void connect(string ip, int port);
         void disconnect();
         void start();
+
+        void centerMapCordinate();
+
         String ErrorMessage { get; set; }
         double HeadingDeg { set; get; }
         double VerticalSpeed { set; get; }
