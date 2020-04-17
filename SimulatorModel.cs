@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.ComponentModel;
 using System.IO;
+using Microsoft.Maps.MapControl.WPF;
 
 namespace FlightSimulatorApp
 {
@@ -16,6 +17,7 @@ namespace FlightSimulatorApp
         volatile Boolean m_stop;
         ITelnetClient m_telnetClient;
         Queue<string> commandsForServer = new Queue<string>();
+        String lastError = "";
 
         public event PropertyChangedEventHandler PropertyChanged;
         public event ErrorMessage SendError;
@@ -54,8 +56,8 @@ namespace FlightSimulatorApp
         }
 
         private Boolean mapInisialized = false;
-        private string centerMap;
-        public string CenterMap
+        private Location centerMap;
+        public Location CenterMap
         {
             get
             {
@@ -80,8 +82,12 @@ namespace FlightSimulatorApp
             get { return errorMessage; }
             set
             {
-                errorMessage = value + errorMessage;
+                if (lastError != value)
+                {
+                errorMessage = value + "\n" + errorMessage;
+                lastError = value;
                 this.NotifyPropertyChanged("ErrorMessage");
+                }
             }
         }
 
@@ -187,8 +193,8 @@ namespace FlightSimulatorApp
                 this.NotifyPropertyChanged("Longitude");
             }
         }
-        private string cordinate;
-        public string Cordinates
+        private Location cordinate;
+        public Location Cordinates
         {
             get { return cordinate;}
             set 
@@ -279,6 +285,7 @@ namespace FlightSimulatorApp
         {
             new Thread(delegate ()
             {
+                Location lastKnownCoordinates = new Location(0,0);
                 List<String> getMessages = new List<String>();
                 getMessages.Add("get /instrumentation/heading-indicator/indicated-heading-deg\r\n");
                 getMessages.Add("get /instrumentation/gps/indicated-vertical-speed\r\n");
@@ -338,16 +345,30 @@ namespace FlightSimulatorApp
                                     break;
                                 case 8:
                                     Latitude = Double.Parse(m_telnetClient.read());
-                                    if (Latitude >= 90 || Latitude <= -90)
+                                    if (Latitude >= 90)
                                     {
+                                        Latitude = 90;
+                                        everythingsFine = false;
+                                        ErrorMessage = "Latitude out of range";
+                                    }
+                                    else if (Latitude <= -90)
+                                    {
+                                        Latitude = 90;
                                         everythingsFine = false;
                                         ErrorMessage = "Latitude out of range";
                                     }
                                     break;
                                 case 9:
                                     Longitude = Double.Parse(m_telnetClient.read());
-                                    if (Longitude >= 180 || Longitude <= -180)
+                                    if (Longitude >= 180)
                                     {
+                                        Longitude = 180;
+                                        everythingsFine = false;
+                                        ErrorMessage = "Longitude out of range";
+                                    }
+                                    else if (Longitude <= -180)
+                                    {
+                                        Longitude = -180;
                                         everythingsFine = false;
                                         ErrorMessage = "Longitude out of range";
                                     }
@@ -409,7 +430,13 @@ namespace FlightSimulatorApp
                     }
                     if (everythingsFine)
                     {
-                    Cordinates = Longitude.ToString() + "," + Latitude.ToString();
+                        lastKnownCoordinates = Cordinates;
+                        //Cordinates = Longitude.ToString() + "," + Latitude.ToString();
+                        Cordinates = new Location(Latitude, Longitude);
+                    }
+                    else
+                    {
+                        Cordinates = lastKnownCoordinates;
                     }
 
                     while (commandsForServer.Count() > 0)

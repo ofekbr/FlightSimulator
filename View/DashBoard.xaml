@@ -16,10 +16,10 @@
                     <TextBlock FontSize="16">Air Speed</TextBlock>
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Margin="10,0,0,0">
-                    <TextBlock FontSize="16" MaxWidth="50" MinWidth="50" Text="{Binding Path=VM_HeadingDeg, StringFormat=n4}"></TextBlock>
-                    <TextBlock FontSize="16" MaxWidth="50" MinWidth="50" Text="{Binding Path=VM_VerticalSpeed, StringFormat=n4}"></TextBlock>
-                    <TextBlock FontSize="16" MaxWidth="50" MinWidth="50" Text="{Binding Path=VM_GroundSpeed, StringFormat=n4}"></TextBlock>
-                    <TextBlock FontSize="16" MaxWidth="50" MinWidth="50" Text="{Binding Path=VM_AirSpeed, StringFormat=n4}"></TextBlock>
+                    <TextBlock FontSize="16" MaxWidth="50" MinWidth="50" Text="{Binding Path=VM_HeadingDeg, StringFormat=n3}"></TextBlock>
+                    <TextBlock FontSize="16" MaxWidth="50" MinWidth="50" Text="{Binding Path=VM_VerticalSpeed, StringFormat=n3}"></TextBlock>
+                    <TextBlock FontSize="16" MaxWidth="50" MinWidth="50" Text="{Binding Path=VM_GroundSpeed, StringFormat=n3}"></TextBlock>
+                    <TextBlock FontSize="16" MaxWidth="50" MinWidth="50" Text="{Binding Path=VM_AirSpeed, StringFormat=n3}"></TextBlock>
                 </StackPanel>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="25,0,0,0">
@@ -30,10 +30,10 @@
                     <TextBlock FontSize="16" Text="Altimeter"></TextBlock>
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Margin="10,0,0,0">
-                    <TextBlock FontSize="16" MaxWidth="50" MinWidth="50" Text="{Binding VM_Alttitude, StringFormat=n4}"/>
-                    <TextBlock FontSize="16" MaxWidth="50" MinWidth="50" Text="{Binding VM_RollDeg, StringFormat=n4}"/>
-                    <TextBlock FontSize="16" MaxWidth="50" MinWidth="50" Text="{Binding VM_PitchDeg, StringFormat=n4}"/>
-                    <TextBlock FontSize="16" MaxWidth="50" MinWidth="50" Text="{Binding VM_Altimeter, StringFormat=n4}"/>
+                    <TextBlock FontSize="16" MaxWidth="50" MinWidth="50" Text="{Binding VM_Alttitude, StringFormat=n3}"/>
+                    <TextBlock FontSize="16" MaxWidth="50" MinWidth="50" Text="{Binding VM_RollDeg, StringFormat=n3}"/>
+                    <TextBlock FontSize="16" MaxWidth="50" MinWidth="50" Text="{Binding VM_PitchDeg, StringFormat=n3}"/>
+                    <TextBlock FontSize="16" MaxWidth="50" MinWidth="50" Text="{Binding VM_Altimeter, StringFormat=n3}"/>
                 </StackPanel>
             </StackPanel>
         </StackPanel>

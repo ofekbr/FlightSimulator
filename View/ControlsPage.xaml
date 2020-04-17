@@ -9,9 +9,14 @@
       Title="ControlsPage">
 
     <Grid>
+        <Image x:Name="background" Source="airplane2.jpg" Margin="-121,-27,-69,-90.4" />
         <local:Controll x:Name="Controls" Margin="415,103,-451,-68" RenderTransformOrigin="0.5,0.5" Height="415" Width="836"/>
         <local:Map x:Name="Map" VerticalAlignment="Top" HorizontalAlignment="Left" Height="300" Width="400" Margin="10,10,0,0"/>
         <local:DashBoard x:Name="DashBoard" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,10,10,0"/>
         <local:Error x:Name="Error" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10,0,0,17" Height="100"/>
+        <Button x:Name="disconnect" Content="Disconnect" HorizontalAlignment="Left" VerticalAlignment="Top" Width="89" Margin="670,408,0,0" Height="25" Click="disconnect_Click" RenderTransformOrigin="-0.207,0.24"/>
+        <Button x:Name="close_prog" Content="Close App" HorizontalAlignment="Left" VerticalAlignment="Top" Width="89" Margin="567,408,0,0" Height="25" Click="close_prog_Click"/>
+
+
     </Grid>
 </Page>

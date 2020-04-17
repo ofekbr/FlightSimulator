@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace FlightSimulatorApp.View
 {
     /// <summary>
@@ -25,7 +26,6 @@ namespace FlightSimulatorApp.View
         ControlsVM controlsVM;
         DashBoardVM dashBoardVM;
         ErrorVm errorVm;
-        //Error errorComponent;
         public ControlsPage(MapVM map, ControlsVM controls, DashBoardVM dashBoard, ErrorVm error)
         {
             errorVm = error;
@@ -37,8 +37,18 @@ namespace FlightSimulatorApp.View
             DashBoard.DataContext = dashBoardVM;
             Controls.DataContext = controlsVM;
             Error.DataContext = errorVm;
-           // errorComponent = Error as Error;
-           // errorComponent.init();
+ 
+        }
+
+        private void disconnect_Click(object sender, RoutedEventArgs e)
+        {
+            controlsVM.disconnect();
+        }
+
+        private void close_prog_Click(object sender, RoutedEventArgs e)
+        {
+            controlsVM.disconnect();
+            System.Windows.Application.Current.Shutdown();
         }
     }
 }

@@ -9,15 +9,16 @@
       Title="LoginPage">
 
     <Grid FocusManager.FocusedElement="{Binding ElementName=IP}">
-        <Label Content="IP" HorizontalAlignment="Left" Margin="299,170,0,0" VerticalAlignment="Top" Height="30" Width="40" FontSize="18"/>
-        <Label Content="Port" HorizontalAlignment="Left" Margin="295,215,0,0" VerticalAlignment="Top" Height="30" Width="40" FontSize="18"/>
-        <TextBox x:Name="IP" HorizontalAlignment="Left" Height="30" Margin="344,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" FontSize="18" MaxLength="15" MaxLines="1"/>
-        <TextBox x:Name="port" HorizontalAlignment="Left" Height="30" Margin="344,215,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" FontSize="18" MaxLength="5" MaxLines="1"/>
-        <Image HorizontalAlignment="Center" Height="140" Margin="0,10,0,0" VerticalAlignment="Top" Width="265" Source="logo.png"/>
-        <Button x:Name="connect_button" Content="Connect" Margin="340,263,340,0" VerticalAlignment="Top" Width="120" Height="30" HorizontalAlignment="Center" FontSize="18" Click="connect_button_Click"/>
-        <Label Content="Shani Berdah" Margin="45,360,0,0" VerticalAlignment="Top" Width="137" HorizontalAlignment="Left" Height="50" FontSize="22"/>
-        <Label Content="Ofek Barkai" Margin="0,360,45,0" VerticalAlignment="Top" Width="120" HorizontalAlignment="Right" Height="50" FontSize="20"/>
-        <Button x:Name="_default" Content="Default" HorizontalAlignment="Center" Margin="0,320,0,0" VerticalAlignment="Top" Width="75" Click="_default_Click"/>
+        <Image x:Name="background" Source="airplane3.jpg" Margin="-72,0,-22,-68.4"></Image>
+        <Label Content="IP" HorizontalAlignment="Left" Margin="465,170,0,0" VerticalAlignment="Top" Height="30" Width="40" FontSize="18"/>
+        <Label Content="Port" HorizontalAlignment="Left" Margin="455,215,0,0" VerticalAlignment="Top" Height="30" Width="50" FontSize="18"/>
+        <TextBox x:Name="IP" HorizontalAlignment="Left" Height="30" Margin="528,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" FontSize="18" MaxLength="15" MaxLines="1"/>
+        <TextBox x:Name="port" HorizontalAlignment="Left" Height="30" Margin="528,215,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" FontSize="18" MaxLength="5" MaxLines="1"/>
+        <Image HorizontalAlignment="Center" Height="140" Margin="466,10,70,0" VerticalAlignment="Top" Width="264" Source="logp1.png"/>
+        <Button x:Name="connect_button" Content="Connect" Margin="537,269,143,0" VerticalAlignment="Top" Width="120" Height="30" HorizontalAlignment="Center" FontSize="18" Click="connect_button_Click"/>
+        <Label Content="Shani Berdah" Margin="45,387,0,0" VerticalAlignment="Top" Width="137" HorizontalAlignment="Left" Height="50" FontSize="22"/>
+        <Label Content="Ofek Barkai" Margin="0,387,45,0" VerticalAlignment="Top" Width="120" HorizontalAlignment="Right" Height="50" FontSize="20"/>
+        <Button x:Name="_default" Content="Default" HorizontalAlignment="Center" Margin="556,316,170,0" VerticalAlignment="Top" Width="74" Click="_default_Click"/>
         <TextBlock x:Name="Error" Text="No server detected" Margin="0,360,0,0" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="22" Visibility="Hidden"/>
     </Grid>
 </Page>

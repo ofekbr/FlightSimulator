@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Maps.MapControl.WPF;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -25,11 +26,11 @@ namespace FlightSimulatorApp
         {
             get { return model.Longitude; }
         }
-        public string VM_Cordinates
+        public Location VM_Cordinates
         {
             get { return model.Cordinates; }
         }
-        public string VM_CenterMap
+        public Location VM_CenterMap
         {
             get { return model.CenterMap; }
         }
