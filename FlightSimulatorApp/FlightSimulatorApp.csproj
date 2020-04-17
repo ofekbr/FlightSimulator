@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A3250BF6-8F90-428B-8AF4-23971BE32F1A}</ProjectGuid>
+    <ProjectGuid>{CE06E748-D20E-4C83-A008-845DC3E243D5}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>FlightSimulatorApp</RootNamespace>
     <AssemblyName>FlightSimulatorApp</AssemblyName>
@@ -20,7 +20,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>.\</OutputPath>
+    <OutputPath>..\out\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -37,7 +37,7 @@
   <ItemGroup>
     <Reference Include="Microsoft.Maps.MapControl.WPF, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>View\Microsoft.Maps.MapControl.WPF.dll</HintPath>
+      <HintPath>Lib\Microsoft.Maps.MapControl.WPF.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -60,77 +60,69 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ErrorVm.cs" />
-    <Compile Include="ControlsVM.cs" />
-    <Compile Include="DashBoardVM.cs" />
-    <Compile Include="MapVM.cs" />
-    <Compile Include="View\Controll.xaml.cs">
-      <DependentUpon>Controll.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\ControlsPage.xaml.cs">
-      <DependentUpon>ControlsPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="FlightControlViewModel.cs" />
-    <Compile Include="ISimulatorModel.cs" />
-    <Compile Include="ITelnetClient.cs" />
-    <Compile Include="View\DashBoard.xaml.cs">
-      <DependentUpon>DashBoard.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Error.xaml.cs">
-      <DependentUpon>Error.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\LoginPage.xaml.cs">
-      <DependentUpon>LoginPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MyTelnetClient.cs" />
     <Compile Include="SimulatorModel.cs" />
-    <Compile Include="View\Joystick.xaml.cs">
-      <DependentUpon>Joystick.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Map.xaml.cs">
-      <DependentUpon>Map.xaml</DependentUpon>
-    </Compile>
-    <Page Include="View\Controll.xaml">
-      <SubType>Designer</SubType>
+    <Compile Include="View\Controll.xaml.cs" />
+    <Compile Include="View\ControlsPage.xaml.cs" />
+    <Compile Include="View\DashBoard.xaml.cs" />
+    <Compile Include="View\Error.xaml.cs" />
+    <Compile Include="View\Joystick.xaml.cs" />
+    <Compile Include="View\LoginPage.xaml.cs" />
+    <Compile Include="View\MainWindow.xaml.cs" />
+    <Compile Include="View\Map.xaml.cs" />
+    <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\ControlsPage.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\DashBoard.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Error.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\LoginPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ControlsVM.cs" />
+    <Compile Include="DashBoardVM.cs" />
+    <Compile Include="ErrorVm.cs" />
+    <Compile Include="FlightControlViewModel.cs" />
+    <Compile Include="ISimulatorModel.cs" />
+    <Compile Include="ITelnetClient.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="View\Controll.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ControlsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\DashBoard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Error.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\Joystick.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\MainWindow.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="View\LoginPage.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Map.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MapVM.cs" />
+    <Compile Include="MyTelnetClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -152,22 +144,19 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Resource Include="View\logo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include=".gitignore" />
+    <Content Include="Lib\Microsoft.Maps.MapControl.WPF.dll" />
     <Resource Include="View\airplane.jpeg" />
     <Resource Include="View\airplane2.jpg" />
     <Resource Include="View\airplane3.jpg" />
+    <Resource Include="View\logo.png" />
     <Resource Include="View\logp1.png" />
-    <Content Include="View\Microsoft.Maps.MapControl.WPF.dll" />
-    <Resource Include="View\Microsoft.Maps.MapControl.WPF.xml" />
+    <Resource Include="Lib\Microsoft.Maps.MapControl.WPF.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
